@@ -58,12 +58,22 @@ class ProductAdmin(admin.ModelAdmin):
     # list_editable = ('price',)
 
     # list_filter -> Фильтр для отображения
-    list_filter = ('category', 'status')
+    list_filter = ('status', 'category',)
 
     # list_per_page -> Бир страницада канча запись болуш керек
     list_per_page = 15
 
     # actions -> Кайсы дествиялар болуш керек
+    actions = [
+        'set_clone_model',
+    ]
+
+    @admin.action(description='Копировать как новый модель')
+    def set_clone_model(self, request, qs: QuerySet):
+        for object in qs:
+            object.id = None
+            object.save()
+
     """
     actions = ['set_category_man',
                'set_category_woman',

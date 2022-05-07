@@ -9,15 +9,15 @@ Status
 
 
 class Product(models.Model):
-    title = models.CharField(max_length=100)
+    title = models.CharField(max_length=100, verbose_name='Название')
     description = models.TextField()
     image = models.ImageField(upload_to='Product/%Y/%m/%d', blank=True)
-    category = models.ForeignKey('Category', on_delete=models.CASCADE)
-    price = models.IntegerField(validators=[MinValueValidator(0)])
-    old_price = models.IntegerField(validators=[MinValueValidator(0)], blank=True)
+    category = models.ForeignKey('Category', on_delete=models.CASCADE, verbose_name='Категория')
+    price = models.IntegerField(validators=[MinValueValidator(0)], verbose_name='Цена')
+    old_price = models.IntegerField(blank=True, default=0)
     pub_date = models.DateField(auto_now=True)
     status = models.ForeignKey('Status', on_delete=models.CASCADE)
-    watch = models.IntegerField(default=0)
+    watch = models.IntegerField(default=0, verbose_name='Просмотры')
 
     # wishlist = models.ManyToManyField()
 
@@ -41,6 +41,7 @@ class Category(models.Model):
                               choices=BIGCATEGORIES,
                               default=3,
                               verbose_name='Группа', )
+    image = models.ImageField(upload_to='Product/Category/%m/%d', blank=True)
 
     def __str__(self):
         return self.title
