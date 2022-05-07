@@ -27,7 +27,7 @@ class Banner(models.Model):
     image = models.ImageField(upload_to='Banner/%m/%d', verbose_name='Фото')
 
     def __str__(self):
-        return self.title.id
+        return self.title
 
     class Meta:
         verbose_name = 'Баннер'
