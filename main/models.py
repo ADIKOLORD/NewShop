@@ -5,6 +5,7 @@ from product.models import Product, Category
 '''
 Discount
 Banner
+Team
 '''
 
 
@@ -32,3 +33,25 @@ class Banner(models.Model):
     class Meta:
         verbose_name = 'Баннер'
         verbose_name_plural = 'Баннер'
+
+
+class Team(models.Model):
+    name = models.CharField(max_length=100)
+    image = models.ImageField(upload_to='OURTEAM/%m/%d')
+    description = models.TextField()
+    site = models.URLField(max_length=200)
+    POSITION = (
+        ('1', 'DIRECTOR'),
+        ('2', 'MENEDJER'),
+        ('3', 'WEB DEVELOPER'),
+        ('4', 'DESING'),
+        ('5', 'BACK END DEVELOPER'),
+    )
+    position = models.CharField(max_length=1, choices=POSITION, default='3')
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = 'Работник'
+        verbose_name_plural = 'Команда'
