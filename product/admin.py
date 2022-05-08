@@ -46,7 +46,7 @@ class ProductAdmin(admin.ModelAdmin):
     readonly_fields = []  # watch
 
     # list_display -> Отображение на панеле
-    list_display = ('title', 'price', 'category', 'watch')
+    list_display = ('title', 'price', 'old_price', 'category', 'watch')
 
     # list_display_links -> Переобразовать в ссылку
     list_display_links = ['title', 'category']
@@ -55,7 +55,7 @@ class ProductAdmin(admin.ModelAdmin):
     search_fields = ('title', 'description',)
 
     # list_editable -> Панелде сразу редактирование кылса болот
-    # list_editable = ('price',)
+    list_editable = ('price', 'old_price',)
 
     # list_filter -> Фильтр для отображения
     list_filter = ('status', 'category',)

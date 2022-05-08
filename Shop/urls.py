@@ -16,13 +16,17 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from main.views import *
 from django.conf.urls.static import static
 from . import settings
+from main.views import main_page, about
+from user.views import cart
+from product.views import shop
 
 urlpatterns = [
                   path('admin/', admin.site.urls),
                   path('', main_page, name='home'),
-                  path('', main_page, name='home'),
+                  path('about', about, name='about'),
+                  path('cart', cart, name='cart'),
+                  path('shop/<int:pk>', shop, name='shop'),
 
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

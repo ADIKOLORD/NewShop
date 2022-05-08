@@ -59,9 +59,13 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="navbar-menu">
                 <ul class="nav navbar-nav ml-auto" data-in="fadeInDown" data-out="fadeOutUp">
-                    <li class="nav-item active"><a class="nav-link" href="{% url 'home' %}">Home</a>
+                    <li class="nav-item {{ index }}"><a class="nav-link" href="{% url 'home' %}">
+                        Home</a>
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+                    <li class="nav-item {{ about }}"><a class="nav-link"
+                                                     href="{% url 'about' %}">About
+                        Us</a></li>
+
                     <li class="dropdown megamenu-fw">
                         <a href="#" class="nav-link dropdown-toggle arrow" data-toggle="dropdown">Product</a>
                         <ul class="dropdown-menu megamenu-content" role="menu">
@@ -120,19 +124,23 @@
                             </li>
                         </ul>
                     </li>
+
                     <li class="dropdown">
-                        <a href="#" class="nav-link dropdown-toggle arrow" data-toggle="dropdown">SHOP</a>
+                        <a href="#" class="nav-link dropdown-toggle arrow"
+                           data-toggle="dropdown">SHOP</a>
                         <ul class="dropdown-menu">
-                            <li><a href="cart.html">Cart</a></li>
+                            <li><a href="{% url 'cart' %}">Cart</a></li>
                             <li><a href="checkout.html">Checkout</a></li>
                             <li><a href="my-account.html">My Account</a></li>
                             <li><a href="wishlist.html">Wishlist</a></li>
                             <li><a href="shop-detail.html">Shop Detail</a></li>
                         </ul>
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="service.html">Our Service</a>
+                    <li class="nav-item {{ service }}"><a class="nav-link" href="service.html">Our
+                        Service</a>
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="contact-us.html">Contact Us</a>
+                    <li class="nav-item {{ contact }}"><a class="nav-link"
+                                                    href="contact-us.html">Contact Us</a>
                     </li>
                 </ul>
             </div>
@@ -201,6 +209,93 @@
 {% block content %}
 
 {% endblock %}
+
+<!-- Start Instagram Feed  -->
+<div class="instagram-box">
+    <div class="main-instagram owl-carousel owl-theme">
+        <div class="item">
+            <div class="ins-inner-box">
+                <img src="{% static 'images/instagram-img-01.jpg' %}" alt=""/>
+                <div class="hov-in">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="item">
+            <div class="ins-inner-box">
+                <img src="{% static 'images/instagram-img-02.jpg' %}" alt=""/>
+                <div class="hov-in">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="item">
+            <div class="ins-inner-box">
+                <img src="{% static 'images/instagram-img-03.jpg' %}" alt=""/>
+                <div class="hov-in">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="item">
+            <div class="ins-inner-box">
+                <img src="{% static 'images/instagram-img-04.jpg' %}" alt=""/>
+                <div class="hov-in">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="item">
+            <div class="ins-inner-box">
+                <img src="{% static 'images/instagram-img-05.jpg' %}" alt=""/>
+                <div class="hov-in">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="item">
+            <div class="ins-inner-box">
+                <img src="{% static 'images/instagram-img-06.jpg' %}" alt=""/>
+                <div class="hov-in">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="item">
+            <div class="ins-inner-box">
+                <img src="{% static 'images/instagram-img-07.jpg' %}" alt=""/>
+                <div class="hov-in">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="item">
+            <div class="ins-inner-box">
+                <img src="{% static 'images/instagram-img-08.jpg' %}" alt=""/>
+                <div class="hov-in">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="item">
+            <div class="ins-inner-box">
+                <img src="{% static 'images/instagram-img-09.jpg' %}" alt=""/>
+                <div class="hov-in">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="item">
+            <div class="ins-inner-box">
+                <img src="{% static 'images/instagram-img-05.jpg' %}" alt=""/>
+                <div class="hov-in">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Instagram Feed  -->
 
 <!-- Start Footer  -->
 <footer>
