@@ -4,17 +4,17 @@
     <ul class="dropdown-menu megamenu-content" role="menu">
         <li>
             <div class="row">
-                {% for category in categories %}
                 <div class="col-menu col-md-3">
-                    <h6 class="title">{{ category.parent }}</h6>
+                    <h6 class="title">Top</h6>
                     <div class="content">
                         <ul class="menu-col">
-                            <li><a href="shop.html"></a></li>
+                            <li><a href="shop.html">adi</a></li>
+                            {% for i in two %}
+                            <li><a href="shop.html">{{ i }}</a></li>
+                            {% endfor %}
                         </ul>
                     </div>
                 </div>
-                {% endfor %}
-
                 <!-- end col-3 -->
                 <div class="col-menu col-md-3">
                     <h6 class="title">Bottom</h6>
@@ -27,7 +27,6 @@
                         </ul>
                     </div>
                 </div>
-
                 <!-- end col-3 -->
                 <div class="col-menu col-md-3">
                     <h6 class="title">Clothing</h6>

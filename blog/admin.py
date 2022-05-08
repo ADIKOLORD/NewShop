@@ -23,7 +23,7 @@ class BlogAdmin(admin.ModelAdmin):
     search_fields = ('author', 'text', 'title')
 
     # list_editable -> Панелде сразу редактирование кылса болот
-    # list_editable = ('price',)
+    list_editable = ('is_published',)
 
     # list_filter -> Фильтр для отображения
     list_filter = ('is_published',)
