@@ -42,12 +42,16 @@
                 <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
             {% endif %}
             <div class="shop-cat-box">
+                {% if category.image %}
                 <img class="img-fluid" src="{{ category.image.url }}" alt=""/>
                 <a class="btn hvr-hover" href="#">{{ category.title }}</a>
+                {% else %}
+                <img class="img-fluid" src="{% static 'images/wallet-img.jpg' %}" alt=""/>
+                <a class="btn hvr-hover" href="#">{{ category.title }}</a>
+                {% endif %}
             </div>
-            {% if category.id|divisibleby:"2"%}
-            {% else %}
-                </div>
+            {% if category.id|divisibleby:"2" == False %}
+            </div>
             {% endif %}
             {% endfor %}
 

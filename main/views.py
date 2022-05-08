@@ -15,8 +15,8 @@ def main_page(request):
     return render(request, 'index.html', context)
 
 
-# def news_header(request):
-#     context = {
-#         "news": News.objects.all()
-#     }
-#     return render(request, 'news.html', context)
+def header(request):
+    context = {
+        "news": News.objects.all()
+    }
+    return render(request, 'header.html', context)
