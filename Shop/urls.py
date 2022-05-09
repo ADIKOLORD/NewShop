@@ -18,16 +18,16 @@ from django.urls import path
 
 from django.conf.urls.static import static
 from . import settings
-from main.views import main_page, about, cate
+from main.views import main_page, about
 from user.views import cart
-from product.views import shop
+from product.views import shop, shopdetail
 
 urlpatterns = [
                   path('admin/', admin.site.urls),
                   path('', main_page, name='home'),
                   path('about', about, name='about'),
                   path('cart', cart, name='cart'),
-                  path('cate', cate, name='cate'),
                   path('shop/<int:pk>', shop, name='shop'),
+                  path('shopdetail/<int:pk>', shopdetail, name='shopdetail'),
 
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

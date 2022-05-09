@@ -12,9 +12,8 @@ def cart(request):
         sum_product += i.price
     context = {
         'title': 'Cart',
-        'products': Product.objects.all()[:5],
-        'sum_pro': sum_product,
-        'sum_last': sum_product - 52,
+        'products': p,
+        'sum_pro': sum_product - 52,
     }
 
     return render(request, 'cart.html', context)

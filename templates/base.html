@@ -2,6 +2,7 @@
 <html lang="en">
 <!-- Basic -->
 {% load static %}
+<!-- title, categories_show -->
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -63,25 +64,92 @@
                         Home</a>
                     </li>
                     <li class="nav-item {{ about }}"><a class="nav-link"
-                                                     href="{% url 'about' %}">About
+                                                        href="{% url 'about' %}">About
                         Us</a></li>
-                    {% include 'cate_product.html' %}
-                    <li class="dropdown">
-                        <a href="#" class="nav-link dropdown-toggle arrow"
+                    <li class="dropdown megamenu-fw">
+                        <a href="#" class="nav-link dropdown-toggle arrow" data-toggle="dropdown">Product</a>
+                        <ul class="dropdown-menu megamenu-content" role="menu">
+                            <li>
+                                <div class="row">
+                                    <div class="col-menu col-md-3">
+                                        <h6 class="title">Top</h6>
+                                        <div class="content">
+                                            <ul class="menu-col">
+                                                {% for category in categories_show %}
+                                                {% if category.parent == '1' %}
+                                                <li>
+                                                    <a href="{% url 'shop' category.id %}">{{
+                                                        category }}</a></li>
+                                                {% endif %}
+                                                {% endfor %}
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <!-- end col-3 -->
+                                    <div class="col-menu col-md-3">
+                                        <h6 class="title">Bottom</h6>
+                                        <div class="content">
+                                            <ul class="menu-col">
+                                                {% for category in categories_show %}
+                                                {% if category.parent == '2' %}
+                                                <li><a href="{% url 'shop' category.id %}">
+                                                    {{ category }}</a></li>
+                                                {% endif %}
+                                                {% endfor %}
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <!-- end col-3 -->
+                                    <div class="col-menu col-md-3">
+                                        <h6 class="title">Clothing</h6>
+                                        <div class="content">
+                                            <ul class="menu-col">
+                                                {% for category in categories_show %}
+                                                {% if category.parent == '3' %}
+                                                <li><a href="{% url 'shop' category.id %}">
+                                                    {{ category }}</a></li>
+                                                {% endif %}
+                                                {% endfor %}
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-menu col-md-3">
+                                        <h6 class="title">Accessories</h6>
+                                        <div class="content">
+                                            <ul class="menu-col">
+                                                {% for category in categories_show %}
+                                                {% if category.parent == '4' %}
+                                                <li><a href="{% url 'shop' category.id %}">
+                                                    {{ category }}</a></li>
+                                                {% endif %}
+                                                {% endfor %}
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <!-- end col-3 -->
+                                </div>
+                                <!-- end row -->
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item {{ shop }} dropdown">
+                        <a href="{% url 'shop' 0 %}" class="nav-link dropdown-toggle arrow"
                            data-toggle="dropdown">SHOP</a>
                         <ul class="dropdown-menu">
                             <li><a href="{% url 'cart' %}">Cart</a></li>
                             <li><a href="checkout.html">Checkout</a></li>
                             <li><a href="my-account.html">My Account</a></li>
                             <li><a href="wishlist.html">Wishlist</a></li>
-                            <li><a href="shop-detail.html">Shop Detail</a></li>
+                            <li><a href="{% url 'shopdetail' 1 %}">Shop Detail</a></li>
                         </ul>
                     </li>
                     <li class="nav-item {{ service }}"><a class="nav-link" href="service.html">Our
                         Service</a>
                     </li>
                     <li class="nav-item {{ contact }}"><a class="nav-link"
-                                                    href="contact-us.html">Contact Us</a>
+                                                          href="contact-us.html">Contact Us</a>
                     </li>
                 </ul>
             </div>
@@ -138,11 +206,16 @@
 <!-- Start Top Search -->
 <div class="top-search">
     <div class="container">
-        <div class="input-group">
-            <span class="input-group-addon"><i class="fa fa-search"></i></span>
-            <input type="text" class="form-control" placeholder="Search">
-            <span class="input-group-addon close-search"><i class="fa fa-times"></i></span>
-        </div>
+
+        <form action="" method="post">
+            {% csrf_token %}
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-search"></i></span>
+                <input type="text" name="mainsearch" class="form-control" placeholder="Search">
+                <span class="input-group-addon close-search"><i class="fa fa-times"></i></span>
+            </div>
+        </form>
+
     </div>
 </div>
 <!-- End Top Search -->

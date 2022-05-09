@@ -41,13 +41,13 @@ class Team(models.Model):
     description = models.TextField()
     site = models.URLField(max_length=200)
     POSITION = (
-        ('1', 'DIRECTOR'),
-        ('2', 'MENEDJER'),
-        ('3', 'WEB DEVELOPER'),
-        ('4', 'DESING'),
-        ('5', 'BACK END DEVELOPER'),
+        ('DIRECTOR', 'DIRECTOR'),
+        ('DIRECTOR', 'MENEDJER'),
+        ('WEB DEVELOPER', 'WEB DEVELOPER'),
+        ('DESING', 'DESING'),
+        ('BACK END DEVELOPER', 'BACK END DEVELOPER'),
     )
-    position = models.CharField(max_length=1, choices=POSITION, default='3')
+    position = models.CharField(max_length=50, choices=POSITION, default='WEB DEVELOPER')
 
     def __str__(self):
         return self.name
