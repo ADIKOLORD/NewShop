@@ -9,7 +9,7 @@
             <div class="col-lg-12">
                 <h2>Cart</h2>
                 <ul class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="#">Shop</a></li>
+                    <li class="breadcrumb-item"><a href="{% url 'shop' 0 %}">Shop</a></li>
                     <li class="breadcrumb-item active">Cart</li>
                 </ul>
             </div>
@@ -37,7 +37,7 @@
                         </thead>
                         <tbody>
                         {% for product in products %}
-                            <tr>
+                        <tr>
                             <td class="thumbnail-img">
 
                                 <a href="#">
@@ -61,9 +61,9 @@
                                 <p>$ {{ product.price }}</p>
                             </td>
                             <td class="remove-pr">
-                                <a href="#">
-                                    <i class="fas fa-times"></i>
-                                </a>
+                                <form action="{% url 'dele' product.id %}">
+                                    <button type="submit"><i class="fas fa-times"></i></button>
+                                </form>
                             </td>
                         </tr>
                         {% endfor %}

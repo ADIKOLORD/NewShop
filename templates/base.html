@@ -78,8 +78,8 @@
                                                 {% for category in categories_show %}
                                                 {% if category.parent == '1' %}
                                                 <li>
-                                                    <a href="{% url 'shop' category.id %}">{{
-                                                        category }}</a></li>
+                                                    <a href="{% url 'shop' category.id %}">
+                                                        {{ category }}</a></li>
                                                 {% endif %}
                                                 {% endfor %}
                                             </ul>
@@ -139,7 +139,7 @@
                            data-toggle="dropdown">SHOP</a>
                         <ul class="dropdown-menu">
                             <li><a href="{% url 'cart' %}">Cart</a></li>
-                            <li><a href="checkout.html">Checkout</a></li>
+                            <li><a href="{% url 'checkout' %}">Checkout</a></li>
                             <li><a href="my-account.html">My Account</a></li>
                             <li><a href="wishlist.html">Wishlist</a></li>
                             <li><a href="{% url 'shopdetail' 1 %}">Shop Detail</a></li>
@@ -331,12 +331,19 @@
                             </li>
                             <li><a href="#"><i class="fab fa-linkedin" aria-hidden="true"></i></a>
                             </li>
-                            <li><a href="#"><i class="fab fa-google-plus"
-                                               aria-hidden="true"></i></a></li>
+                            <li>
+                                <a href="#">
+                                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                                </a>
+                            </li>
                             <li><a href="#"><i class="fa fa-rss" aria-hidden="true"></i></a></li>
-                            <li><a href="#"><i class="fab fa-pinterest-p"
-                                               aria-hidden="true"></i></a></li>
-                            <li><a href="#"><i class="fab fa-whatsapp" aria-hidden="true"></i></a>
+                            <li>
+                                <a href="#">
+                                    <i class="fab fa-pinterest-p" aria-hidden="true"></i>
+                                </a>
+                            </li>
+                            <li><a href="http://Wa.me/+996779276265">
+                                <i class="fab fa-whatsapp" aria-hidden="true"></i></a>
                             </li>
                         </ul>
                     </div>
@@ -345,7 +352,7 @@
                     <div class="footer-link">
                         <h4>Information</h4>
                         <ul>
-                            <li><a href="#">About Us</a></li>
+                            <li><a href="{% url 'about' %}">About Us</a></li>
                             <li><a href="#">Customer Service</a></li>
                             <li><a href="#">Our Sitemap</a></li>
                             <li><a href="#">Terms &amp; Conditions</a></li>
@@ -407,5 +414,4 @@
 <script src="{% static 'js/contact-form-script.js' %}"></script>
 <script src="{% static 'js/custom.js' %}"></script>
 </body>
-
 </html>

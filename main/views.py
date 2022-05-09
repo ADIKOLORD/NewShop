@@ -30,6 +30,8 @@ def about(request):
         'teams': Team.objects.all(),
         'about': 'active',
         'title': 'About',
+        'categories_show': Category.objects.all(),
+
     }
 
     return render(request, 'about.html', context)

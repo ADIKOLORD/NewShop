@@ -19,7 +19,7 @@ from django.urls import path
 from django.conf.urls.static import static
 from . import settings
 from main.views import main_page, about
-from user.views import cart
+from user.views import cart, dele, checkout
 from product.views import shop, shopdetail
 
 urlpatterns = [
@@ -27,7 +27,10 @@ urlpatterns = [
                   path('', main_page, name='home'),
                   path('about', about, name='about'),
                   path('cart', cart, name='cart'),
+                  path('dele/<int:id>', dele, name='dele'),
                   path('shop/<int:pk>', shop, name='shop'),
                   path('shopdetail/<int:pk>', shopdetail, name='shopdetail'),
+                  path('checkout', checkout, name='checkout'),
+
 
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
