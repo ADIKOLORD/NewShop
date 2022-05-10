@@ -57,7 +57,7 @@ def cart_add(request, id):
     global p
     wishlist_del(request, id)
     for pr in Product.objects.all():
-        if pr.id == id:
+        if pr.id == id and pr not in p:
             p.append(pr)
     sum_product = sum([i.price for i in p])
 

@@ -327,7 +327,7 @@
                                                                title="Add to Wishlist"><i
                                                                 class="far fa-heart"></i></a></li>
                                                     </ul>
-                                                    <a class="cart" href="#">Add to Cart</a>
+                                                    <a class="cart" href="{% url 'cart_add' product.id %}">Add to Cart</a>
                                                 </div>
                                             </div>
                                             <div class="why-text">
@@ -394,7 +394,9 @@
                                                     ${{ product.price }}
                                                 </h5>
                                                 <p>{{ product.description }}</p>
-                                                <a class="btn hvr-hover" href="#">Add to Cart</a>
+                                                <a class="btn hvr-hover"
+                                                   href="{% url 'cart_add' product.id %}">
+                                                    Add to Cart</a>
                                             </div>
                                         </div>
                                     </div>
