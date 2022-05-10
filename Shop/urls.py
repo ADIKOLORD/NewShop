@@ -19,15 +19,18 @@ from django.urls import path
 from django.conf.urls.static import static
 from . import settings
 from main.views import main_page, about
-from user.views import cart, dele, checkout
+from user.views import cart, cart_add, cart_dele, checkout, wishlist_add, wishlist_del
 from product.views import shop, shopdetail
 
 urlpatterns = [
                   path('admin/', admin.site.urls),
                   path('', main_page, name='home'),
                   path('about', about, name='about'),
+                  path('wishlist/<int:pk>', wishlist_add, name='wishlist'),
+                  path('wishlistdel/<int:pk>', wishlist_del, name='wishlist_del'),
                   path('cart', cart, name='cart'),
-                  path('dele/<int:id>', dele, name='dele'),
+                  path('cart_add/<int:id>', cart_add, name='cart_add'),
+                  path('dele/<int:id>', cart_dele, name='dele'),
                   path('shop/<int:pk>', shop, name='shop'),
                   path('shopdetail/<int:pk>', shopdetail, name='shopdetail'),
                   path('checkout', checkout, name='checkout'),

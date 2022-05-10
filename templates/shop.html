@@ -72,7 +72,7 @@
 
                             <div class="list-group-collapse sub-men">
                                 <a class="list-group-item list-group-item-action" href="#sub-men2"
-                                   data-toggle="collapse" aria-expanded="true"
+                                   data-toggle="collapse" aria-expanded="false"
                                    aria-controls="sub-men2">BOTTOM<small
                                         class="text-muted">({{ par2 }})</small>
                                 </a>
@@ -102,7 +102,7 @@
 
                             <div class="list-group-collapse sub-men">
                                 <a class="list-group-item list-group-item-action" href="#sub-men3"
-                                   data-toggle="collapse" aria-expanded="true"
+                                   data-toggle="collapse" aria-expanded="false"
                                    aria-controls="sub-men3">Clothing <small
                                         class="text-muted">({{ par3 }})</small>
                                 </a>
@@ -132,7 +132,7 @@
 
                             <div class="list-group-collapse sub-men">
                                 <a class="list-group-item list-group-item-action" href="#sub-men4"
-                                   data-toggle="collapse" aria-expanded="true"
+                                   data-toggle="collapse" aria-expanded="false"
                                    aria-controls="sub-men4">ACCESSORIES<small
                                         class="text-muted">({{ par4 }})</small>
                                 </a>
@@ -322,7 +322,7 @@
                                                                title="Compare"><i
                                                                     class="fas fa-sync-alt"></i></a>
                                                         </li>
-                                                        <li><a href="#" data-toggle="tooltip"
+                                                        <li><a href="{% url 'wishlist' product.id %}" data-toggle="tooltip"
                                                                data-placement="right"
                                                                title="Add to Wishlist"><i
                                                                 class="far fa-heart"></i></a></li>
@@ -372,7 +372,9 @@
                                                                    title="Compare"><i
                                                                     class="fas fa-sync-alt"></i></a>
                                                             </li>
-                                                            <li><a href="#" data-toggle="tooltip"
+                                                            <li><a
+                                                                    href="{% url 'wishlist' product.id %}"
+                                                                   data-toggle="tooltip"
                                                                    data-placement="right"
                                                                    title="Add to Wishlist"><i
                                                                     class="far fa-heart"></i></a>

@@ -4,6 +4,11 @@ from django.shortcuts import render, redirect
 from main.models import News
 from product.models import Product, Category
 
+for i in Category.objects.all():
+    a = Category.objects.get(pk=i.id)
+    a.count = Product.objects.all().filter(category_id=i.id).count()
+    a.save()
+
 
 def shopfind(request, word):
     context = {
@@ -24,11 +29,6 @@ def shop(request, pk):
         products = Product.objects.all()
     else:
         products = Product.objects.all().filter(category_id=pk)
-
-    for i in Category.objects.all():
-        a = Category.objects.get(pk=i.id)
-        a.count = Product.objects.all().filter(category_id=i.id).count()
-        a.save()
 
     context = {
         'title': 'Shop',
