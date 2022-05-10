@@ -24,15 +24,26 @@ def shop(request, pk):
         products = Product.objects.all()
     else:
         products = Product.objects.all().filter(category_id=pk)
+
+    for i in Category.objects.all():
+        a = Category.objects.get(pk=i.id)
+        a.count = Product.objects.all().filter(category_id=i.id).count()
+        a.save()
+
     context = {
         'title': 'Shop',
         'shop': 'active',
         'products': products,
         'news': News.objects.all(),
         'categories_show': Category.objects.all(),
-        'id': pk
+        'id': pk,
+        'par1': sum([i.count for i in Category.objects.all().filter(parent=1)]),
+        'par2': sum([i.count for i in Category.objects.all().filter(parent=2)]),
+        'par3': sum([i.count for i in Category.objects.all().filter(parent=3)]),
+        'par4': sum([i.count for i in Category.objects.all().filter(parent=4)]),
 
     }
+
     return render(request, 'shop.html', context)
 
 

@@ -3,7 +3,7 @@ from django.shortcuts import render
 from product.models import Product, Category
 
 # User App
-p = Product.objects.all()[:5]
+p = Product.objects.all()[:10]
 
 
 def cart(request):

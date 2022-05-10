@@ -42,7 +42,7 @@ class Category(models.Model):
                               default=3,
                               verbose_name='Группа', )
     image = models.ImageField(upload_to='Product/Category/%m/%d', blank=True)
-
+    count = models.IntegerField(default=0)
     def __str__(self):
         return self.title
 
