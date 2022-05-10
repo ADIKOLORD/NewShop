@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 # Product App
 from main.models import News
 from product.models import Product, Category
+from user.views import p
 
 for i in Category.objects.all():
     a = Category.objects.get(pk=i.id)
@@ -17,6 +18,9 @@ def shopfind(request, word):
         'products': Product.objects.all().filter(title__icontains=word),
         'news': News.objects.all(),
         'categories_show': Category.objects.all(),
+        'count_cart': len(p),
+        'cart_products': p,
+        'sum_cart': sum([i.price for i in p]),
     }
     return render(request, 'shop.html', context)
 
@@ -41,6 +45,9 @@ def shop(request, pk):
         'par2': sum([i.count for i in Category.objects.all().filter(parent=2)]),
         'par3': sum([i.count for i in Category.objects.all().filter(parent=3)]),
         'par4': sum([i.count for i in Category.objects.all().filter(parent=4)]),
+        'count_cart': len(p),
+        'cart_products': p,
+        'sum_cart': sum([i.price for i in p]),
 
     }
 
@@ -52,6 +59,9 @@ def shopdetail(request, pk):
         'title': 'Detail',
         'categories_show': Category.objects.all(),
         'product': Product.objects.get(pk=pk),
-        'products': Product.objects.all()[:7]
+        'products': Product.objects.all()[:7],
+        'count_cart': len(p),
+        'cart_products': p,
+        'sum_cart': sum([i.price for i in p]),
     }
     return render(request, 'shop-detail.html', context)

@@ -152,13 +152,15 @@
                     <div class="price-box-bar">
                         <div class="cart-and-bay-btn">
                             <a class="btn hvr-hover" data-fancybox-close="" href="#">Buy New</a>
-                            <a class="btn hvr-hover" data-fancybox-close="" href="#">Add to cart</a>
+                            <a class="btn hvr-hover" data-fancybox-close="" href="{% url 'cart_add' product.id %}">Add to cart</a>
                         </div>
                     </div>
 
                     <div class="add-to-btn">
                         <div class="add-comp">
-                            <a class="btn hvr-hover" href="#"><i class="fas fa-heart"></i> Add to
+                            <a class="btn hvr-hover" href="{% url 'wishlist' product.id %}"><i
+                                    class="fas fa-heart"></i>
+                                Add to
                                 wishlist</a>
                             <a class="btn hvr-hover" href="#"><i class="fas fa-sync-alt"></i> Add to
                                 Compare</a>

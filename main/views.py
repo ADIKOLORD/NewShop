@@ -4,6 +4,7 @@ from blog.models import Blog
 from main.models import Banner, News, Team
 from product.models import Product, Category
 from product.views import shopfind
+from user.views import p
 
 
 def main_page(request):
@@ -17,7 +18,10 @@ def main_page(request):
         "news": News.objects.all(),
         'categories': Category.objects.all()[:6],
         'categories_show': Category.objects.all(),
-        'blogs': Blog.objects.all().filter(is_published=True)[:3]
+        'blogs': Blog.objects.all().filter(is_published=True)[:3],
+        'count_cart': len(p),
+        'cart_products': p,
+        'sum_cart': sum([i.price for i in p]),
     }
 
     return render(request, 'index.html', context)
@@ -31,6 +35,9 @@ def about(request):
         'about': 'active',
         'title': 'About',
         'categories_show': Category.objects.all(),
+        'count_cart': len(p),
+        'cart_products': p,
+        'sum_cart': sum([i.price for i in p]),
 
     }
 
