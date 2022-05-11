@@ -25,9 +25,12 @@ def shopfind(request, word):
     return render(request, 'shop.html', context)
 
 
-def shop(request, pk):
+def shop(request, pk=0):
     if request.method == 'POST':
-        return shopfind(request, request.POST['word'])
+        try:
+            return shopfind(request, request.POST['word'])
+        except:
+            return shopfind(request, request.POST['mainsearch'])
 
     if int(pk) == 0:
         products = Product.objects.all()

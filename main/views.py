@@ -6,6 +6,14 @@ from product.models import Product, Category
 from product.views import shopfind
 from user.views import p
 
+'''
+mandatory argument
+'categories_show': Category.objects.all(),
+        'count_cart': len(p),
+        'cart_products': p,
+        'sum_cart': sum([i.price for i in p]),
+'''
+
 
 def main_page(request):
     if request.method == 'POST':
@@ -42,3 +50,16 @@ def about(request):
     }
 
     return render(request, 'about.html', context)
+
+
+def service(request):
+    context = {
+        'title': 'Service',
+        'service': 'active',
+        'categories_show': Category.objects.all(),
+        'count_cart': len(p),
+        'cart_products': p,
+        'sum_cart': sum([i.price for i in p]),
+        'teams': Team.objects.all(),
+    }
+    return render(request, 'service.html', context)

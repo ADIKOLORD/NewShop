@@ -118,6 +118,16 @@ def checkout(request):
         'cart_products': p,
         'sum_cart': sum([i.price for i in p]),
 
-
     }
     return render(request, 'checkout.html', context)
+
+
+def my_account(request):
+    context = {
+        'title': 'My Account',
+        'categories_show': Category.objects.all(),
+        'count_cart': len(p),
+        'cart_products': p,
+        'sum_cart': sum([i.price for i in p]),
+    }
+    return render(request, 'my-account.html', context)

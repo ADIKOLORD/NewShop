@@ -18,14 +18,16 @@ from django.urls import path
 
 from django.conf.urls.static import static
 from . import settings
-from main.views import main_page, about
-from user.views import cart, cart_add, cart_dele, checkout, wishlist_add, wishlist_del
+from main.views import main_page, about, service
+from user.views import cart, \
+    cart_add, cart_dele, checkout, \
+    wishlist_add, wishlist_del, my_account
 from product.views import shop, shopdetail
 
 urlpatterns = [
                   path('admin/', admin.site.urls),
                   path('', main_page, name='home'),
-                  path('about', about, name='about'),
+                  path('about/', about, name='about'),
                   path('wishlist/<int:pk>', wishlist_add, name='wishlist'),
                   path('wishlistdel/<int:pk>', wishlist_del, name='wishlist_del'),
                   path('cart', cart, name='cart'),
@@ -34,6 +36,8 @@ urlpatterns = [
                   path('shop/<int:pk>', shop, name='shop'),
                   path('shopdetail/<int:pk>', shopdetail, name='shopdetail'),
                   path('checkout', checkout, name='checkout'),
+                  path('myaccount/', my_account, name='myaccount'),
+                  path('service/', service, name='service'),
 
 
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
