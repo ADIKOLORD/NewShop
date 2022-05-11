@@ -1,13 +1,13 @@
 from django import forms
 from django.contrib.auth.models import User  # import model User
 
-"""
-class UserRegisterForm, UserLoginForm not ready yet  
 
 class UserRegisterForm(forms.ModelForm):
+
     '''
     class for Register User.
     '''
+
     password = forms.CharField(
         label='Password',
         widget=forms.PasswordInput(attrs={'class': 'form-control'})
@@ -19,8 +19,10 @@ class UserRegisterForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ('username', 'email')
+        fields = ('first_name', 'last_name', 'username', 'email')
         widgets = {
+            'first_name': forms.TextInput(attrs={'class': 'form-control'}),
+            'last_name': forms.TextInput(attrs={'class': 'form-control'}),
             'username': forms.TextInput(attrs={'class': 'form-control'}),
             'email': forms.EmailInput(attrs={'class': 'form-control'}),
         }
@@ -32,10 +34,6 @@ class UserRegisterForm(forms.ModelForm):
         else:
             return cd['password_confirmation']
 
-    # def print_say(self):
-    #     for i in range(10):
-    #         print(i)
-
 
 class UserLoginForm(forms.ModelForm):
     password = forms.CharField(
@@ -45,10 +43,9 @@ class UserLoginForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ('username', 'password')
+        fields = ('username',)
         widgets = {
             'username': forms.TextInput(attrs={'class': 'form-control'}),
-            'password': forms.PasswordInput(attrs={'class': 'form-control'}),
         }
 
     def clean(self):
@@ -62,6 +59,3 @@ class UserLoginForm(forms.ModelForm):
             if not user.check_password(password):
                 raise forms.ValidationError('Password is not correct')
             return self.cleaned_data
-
-
-"""

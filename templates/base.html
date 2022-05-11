@@ -196,6 +196,39 @@
                 </ul>
             </li>
         </div>
+
+        {% if not user.is_authenticated %}
+        <p style=" margin-right:5px;">
+            <a class="btn hvr-hover" href="{% url 'register' %}"
+               style="color:white; background-color:#0471c4; border-radius:8px;">REGISTER</a>
+        </p>
+
+        <p>
+            <a class="btn hvr-hover" href="{% url 'login' %}"
+               style="color:white;
+               background-color:#129421;
+               border-radius:8px;
+               font-weight:bold;">Login</a>
+        </p>
+        {% else %}
+        <form method="post" action="{% url 'logout' %}">
+            <div class="mb3">
+                {% csrf_token s%}
+                <button type="submit" class="btn hvr-hover"
+                        style="margin-right:5px;
+                        background-color:#fc0303;
+                        color:#fce803;
+                        font-weight:bold;">LOGOUT
+                </button>
+            </div>
+        </form>
+        {% endif %}
+
+        {% if request.user.is_authenticated %}
+        <p class="btn" style="color:black; background-color:#f7f011;
+        border-radius:8px;font-weight:bold;">
+            Hello, {{ request.user.username }}</p>
+        {% endif %}
         <!-- End Side Menu -->
     </nav>
     <!-- End Navigation -->

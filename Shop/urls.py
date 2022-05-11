@@ -21,7 +21,7 @@ from . import settings
 from main.views import main_page, about, service
 from user.views import cart, \
     cart_add, cart_dele, checkout, \
-    wishlist_add, wishlist_del, my_account
+    wishlist_add, wishlist_del, my_account, register, auth, logout_user
 from product.views import shop, shopdetail
 
 urlpatterns = [
@@ -38,6 +38,8 @@ urlpatterns = [
                   path('checkout', checkout, name='checkout'),
                   path('myaccount/', my_account, name='myaccount'),
                   path('service/', service, name='service'),
-
+                  path('register/', register, name='register'),
+                  path('login/', auth, name='login'),
+                  path('logout/', logout_user, name='logout'),
 
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

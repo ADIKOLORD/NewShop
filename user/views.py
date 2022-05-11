@@ -1,8 +1,13 @@
-from django.shortcuts import render
+from django.contrib.auth import authenticate, login, logout
+from django import forms
+from django.http import HttpResponse
+from django.shortcuts import render, redirect
 
 from product.models import Product, Category
 
 # User App
+from user.forms import UserRegisterForm, UserLoginForm
+
 p = []  # Products in Cart
 wishlist_product = []
 
@@ -107,6 +112,76 @@ def cart_dele(request, id):
     return render(request, 'cart.html', context)
 
 
+def my_account(request):
+    context = {
+        'title': 'My Account',
+        'categories_show': Category.objects.all(),
+        'count_cart': len(p),
+        'cart_products': p,
+        'sum_cart': sum([i.price for i in p]),
+    }
+    return render(request, 'my-account.html', context)
+
+
+def register(request):
+    if request.method == 'POST':
+        user_form = UserRegisterForm(request.POST)
+        if user_form.is_valid():
+            new_user = user_form.save()
+            new_user.set_password(user_form.cleaned_data['password'])
+            new_user.save()
+            return redirect('home')
+
+        else:
+            return HttpResponse('''<h1>Password is not correct</h1>
+            <br>
+            <a href="/register">Try again</a>''')
+    user_form = UserRegisterForm()
+    context = {
+        'title': 'REGISTER',
+        'categories_show': Category.objects.all(),
+        'count_cart': len(p),
+        'cart_products': p,
+        'sum_cart': sum([i.price for i in p]),
+        'user_form': user_form,
+    }
+    return render(request, 'register.html', context)
+
+
+def auth(request):
+    if request.method == 'POST':
+        form = UserLoginForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
+            user = authenticate(username=username, password=password)
+            if user:
+                login(request, user)
+                return redirect('home')
+
+        else:
+            username = form.cleaned_data['username']
+            raise forms.ValidationError(f'Wrong or No username:{username} or password')
+    form = UserLoginForm()
+    context = {
+        'title': 'Checkout',
+        'categories_show': Category.objects.all(),
+        'buy_products': p,
+        'count_cart': len(p),
+        'cart_products': p,
+        'sum_cart': sum([i.price for i in p]),
+        'form': form,
+
+    }
+    return render(request, 'login.html', context)
+
+
+def logout_user(request):
+    if request.method == 'POST':
+        logout(request)
+        return redirect('login')
+
+
 def checkout(request):
     sum_product = sum([i.price for i in p])  # sum all products in Cart
     context = {
@@ -117,17 +192,22 @@ def checkout(request):
         'count_cart': len(p),
         'cart_products': p,
         'sum_cart': sum([i.price for i in p]),
-
     }
     return render(request, 'checkout.html', context)
 
+    user_form = UserRegisterForm()
+    form = UserLoginForm()
 
-def my_account(request):
+    user_form = UserRegisterForm()
     context = {
-        'title': 'My Account',
-        'categories_show': Category.objects.all(),
-        'count_cart': len(p),
-        'cart_products': p,
-        'sum_cart': sum([i.price for i in p]),
+        'user_form': user_form,
     }
-    return render(request, 'my-account.html', context)
+    return render(request, 'register.html', context)
+
+
+def new_login1(request):
+    form = UserLoginForm()
+    context = {
+        'form': form,
+    }
+    return render(request, 'login.html', context)
