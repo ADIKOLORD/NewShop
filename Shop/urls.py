@@ -18,7 +18,7 @@ from django.urls import path
 
 from django.conf.urls.static import static
 from . import settings
-from main.views import main_page, about, service
+from main.views import service, contact, About, Main
 from user.views import cart, \
     cart_add, cart_dele, checkout, \
     wishlist_add, wishlist_del, my_account, register, auth, logout_user
@@ -26,8 +26,8 @@ from product.views import shop, shopdetail
 
 urlpatterns = [
                   path('admin/', admin.site.urls),
-                  path('', main_page, name='home'),
-                  path('about/', about, name='about'),
+                  path('', Main.as_view(), name='home'),
+                  path('about/', About.as_view(), name='about'),
                   path('wishlist/<int:pk>', wishlist_add, name='wishlist'),
                   path('wishlistdel/<int:pk>', wishlist_del, name='wishlist_del'),
                   path('cart', cart, name='cart'),
@@ -38,6 +38,7 @@ urlpatterns = [
                   path('checkout', checkout, name='checkout'),
                   path('myaccount/', my_account, name='myaccount'),
                   path('service/', service, name='service'),
+                  path('contact/', contact, name='contact'),
                   path('register/', register, name='register'),
                   path('login/', auth, name='login'),
                   path('logout/', logout_user, name='logout'),

@@ -3,7 +3,6 @@ from django.contrib.auth.models import User  # import model User
 
 
 class UserRegisterForm(forms.ModelForm):
-
     '''
     class for Register User.
     '''
@@ -20,6 +19,7 @@ class UserRegisterForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ('first_name', 'last_name', 'username', 'email')
+        exclude = ('email.help_text',)
         widgets = {
             'first_name': forms.TextInput(attrs={'class': 'form-control'}),
             'last_name': forms.TextInput(attrs={'class': 'form-control'}),
@@ -47,6 +47,7 @@ class UserLoginForm(forms.ModelForm):
         widgets = {
             'username': forms.TextInput(attrs={'class': 'form-control'}),
         }
+        exclude = ('password.help_text',)
 
     def clean(self):
         username = self.cleaned_data['username']

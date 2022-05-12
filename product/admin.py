@@ -37,7 +37,9 @@ class ModelAdmin(admin.ModelAdmin):
 
 
 class ProductAdmin(admin.ModelAdmin):
-    '''Для настройки админской панели!'''
+    '''
+    Для настройки админской панели!
+    '''
 
     # exclude -> Кайсы полялар добавить эткенде корунбосун
     exclude = ['watch', 'pub_date']

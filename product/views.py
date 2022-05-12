@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 
 # Product App
+from django.views.generic import DetailView
+
 from main.models import News
 from product.models import Product, Category
 from user.views import p

@@ -133,7 +133,7 @@ def register(request):
             return redirect('home')
 
         else:
-            return HttpResponse('''<h1>Password is not correct</h1>
+            return HttpResponse('''<h1>Password is not correct or User already exist</h1>
             <br>
             <a href="/register">Try again</a>''')
     user_form = UserRegisterForm()
@@ -164,7 +164,7 @@ def auth(request):
             raise forms.ValidationError(f'Wrong or No username:{username} or password')
     form = UserLoginForm()
     context = {
-        'title': 'Checkout',
+        'title': 'LOGIN',
         'categories_show': Category.objects.all(),
         'buy_products': p,
         'count_cart': len(p),
@@ -204,10 +204,3 @@ def checkout(request):
     }
     return render(request, 'register.html', context)
 
-
-def new_login1(request):
-    form = UserLoginForm()
-    context = {
-        'form': form,
-    }
-    return render(request, 'login.html', context)
