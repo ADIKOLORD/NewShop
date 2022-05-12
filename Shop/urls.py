@@ -18,7 +18,7 @@ from django.urls import path
 
 from django.conf.urls.static import static
 from . import settings
-from main.views import service, contact, About, Main
+from main.views import About, Main, Service, Contact
 from user.views import cart, \
     cart_add, cart_dele, checkout, \
     wishlist_add, wishlist_del, my_account, register, auth, logout_user
@@ -37,8 +37,8 @@ urlpatterns = [
                   path('shopdetail/<int:pk>', shopdetail, name='shopdetail'),
                   path('checkout', checkout, name='checkout'),
                   path('myaccount/', my_account, name='myaccount'),
-                  path('service/', service, name='service'),
-                  path('contact/', contact, name='contact'),
+                  path('service/', Service.as_view(), name='service'),
+                  path('contact/', Contact.as_view(), name='contact'),
                   path('register/', register, name='register'),
                   path('login/', auth, name='login'),
                   path('logout/', logout_user, name='logout'),

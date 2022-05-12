@@ -1,16 +1,10 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render
 
 # Product App
-from django.views.generic import DetailView
 
 from main.models import News
 from product.models import Product, Category
-from user.views import p
-
-for i in Category.objects.all():
-    a = Category.objects.get(pk=i.id)
-    a.count = Product.objects.all().filter(category_id=i.id).count()
-    a.save()
+from user.models import MyUser
 
 
 def shopfind(request, word):
@@ -20,10 +14,14 @@ def shopfind(request, word):
         'products': Product.objects.all().filter(title__icontains=word),
         'news': News.objects.all(),
         'categories_show': Category.objects.all(),
-        'count_cart': len(p),
-        'cart_products': p,
-        'sum_cart': sum([i.price for i in p]),
     }
+    if request.user.is_authenticated:
+        user = MyUser.objects.get(name=request.user.username)
+        context.update({
+            'count_cart': user.cart.count(),
+            'cart_products': user.cart.all(),
+            'sum_cart': sum([i.price for i in user.cart.all()]),
+        })
     return render(request, 'shop.html', context)
 
 
@@ -50,11 +48,15 @@ def shop(request, pk=0):
         'par2': sum([i.count for i in Category.objects.all().filter(parent=2)]),
         'par3': sum([i.count for i in Category.objects.all().filter(parent=3)]),
         'par4': sum([i.count for i in Category.objects.all().filter(parent=4)]),
-        'count_cart': len(p),
-        'cart_products': p,
-        'sum_cart': sum([i.price for i in p]),
 
     }
+    if request.user.is_authenticated:
+        user = MyUser.objects.get(name=request.user.username)
+        context.update({
+            'count_cart': user.cart.count(),
+            'cart_products': user.cart.all(),
+            'sum_cart': sum([i.price for i in user.cart.all()]),
+        })
 
     return render(request, 'shop.html', context)
 
@@ -65,8 +67,13 @@ def shopdetail(request, pk):
         'categories_show': Category.objects.all(),
         'product': Product.objects.get(pk=pk),
         'products': Product.objects.all()[:7],
-        'count_cart': len(p),
-        'cart_products': p,
-        'sum_cart': sum([i.price for i in p]),
+
     }
+    if request.user.is_authenticated:
+        user = MyUser.objects.get(name=request.user.username)
+        context.update({
+            'count_cart': user.cart.count(),
+            'cart_products': user.cart.all(),
+            'sum_cart': sum([i.price for i in user.cart.all()]),
+        })
     return render(request, 'shop-detail.html', context)
