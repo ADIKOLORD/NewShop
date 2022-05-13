@@ -11,7 +11,6 @@ from user.models import MyUser
 
 
 def wishlist_add(request, pk):
-    # request.user.username
     if request.user.is_authenticated:
         user = MyUser.objects.get(name=request.user.username)
         if int(pk) != 0:

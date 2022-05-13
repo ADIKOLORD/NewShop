@@ -26,6 +26,10 @@ def shopfind(request, word):
 
 
 def shop(request, pk=0):
+    for cat in Category.objects.all():
+        cat.count = Product.objects.all().filter(category_id=cat.id).count()
+        cat.save()
+
     if request.method == 'POST':
         try:
             return shopfind(request, request.POST['word'])

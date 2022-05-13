@@ -11,8 +11,8 @@ Team
 
 class News(models.Model):
     news = models.CharField(max_length=250, verbose_name='Что нового')
-    product = models.ForeignKey(Product, on_delete=models.CASCADE, blank=True)
-    category = models.ForeignKey(Category, on_delete=models.CASCADE, blank=True)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, blank=True, null=True)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, blank=True, null=True)
 
     def __str__(self):
         return self.news

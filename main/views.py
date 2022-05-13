@@ -1,4 +1,3 @@
-
 from django.views.generic import ListView
 
 from blog.models import Blog
@@ -6,7 +5,6 @@ from main.models import Banner, News, Team
 from product.models import Product, Category
 from product.views import shopfind
 from user.models import MyUser
-
 
 
 # func show main_page
@@ -142,6 +140,7 @@ class Service(ListView):
             'title': 'Service',
             'service': 'active',
             'categories_show': Category.objects.all(),
+            'teams': Team.objects.all(),
         })
         if self.request.user.is_authenticated:
             user = MyUser.objects.get(name=self.request.user.username)
