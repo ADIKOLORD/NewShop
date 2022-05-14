@@ -28,7 +28,7 @@
     <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{% static 'css/custom.css' %}">
-
+    {% block ownlink %} {% endblock %}
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
@@ -37,7 +37,47 @@
 </head>
 <body>
 
-{% include 'header.html' %}
+<!-- Start Main Top -->
+<div class="main-top">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="text-slid-box">
+                    <div id="offer-box" class="carouselTicker">
+                        <ul class="offer-box">
+                            {% for new in news %}
+                            <li>
+                                <i class="fab fa-opencart"></i>{{ new.news }}
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="custom-select-box">
+                    <select id="basic" class="selectpicker show-tick form-control"
+                            data-placeholder="$ USD">
+                        <option>¥ JPY</option>
+                        <option>$ USD</option>
+                        <option>€ EUR</option>
+                    </select>
+                </div>
+                <div class="right-phone-box">
+                    <p>Call US :- <a href="#"> +11 900 800 100</a></p>
+                </div>
+                <div class="our-link">
+                    <ul>
+                        <li><a href="{% url 'myaccount' %}">My Account</a></li>
+                        <li><a href="#">Our location</a></li>
+                        <li><a href="{% url 'contact' %}">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Main Top -->
 
 <!-- Start Main Top -->
 <header class="main-header">
@@ -149,6 +189,9 @@
                                                           href="{% url 'service' %}">Our
                         Service</a>
                     </li>
+                    <li class="nav-item {{ blog }}"><a class="nav-link" href="{% url 'blog' %}">
+                        Blog</a>
+                    </li>
                     <li class="nav-item {{ contact }}"><a class="nav-link"
                                                           href="{% url 'contact' %}">Contact Us</a>
                     </li>
@@ -225,9 +268,9 @@
         {% endif %}
 
         {% if request.user.is_authenticated %}
-        <p class="btn" style="color:black; background-color:#f7f011;
+        <a class="btn" href="{% url 'myaccount' %}" style="color:black; background-color:#f7f011;
         border-radius:8px;font-weight:bold;">
-            Hello, {{ request.user.username }}</p>
+            Hello, {{ request.user.username }}</a>
         {% endif %}
         <!-- End Side Menu -->
     </nav>
@@ -433,6 +476,8 @@
 <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
 <script src="{% static 'js/popper.min.js' %}"></script>
 <script src="{% static 'js/bootstrap.min.js' %}"></script>
+{% block ownfooter %}
+{% endblock %}
 <!-- ALL PLUGINS -->
 <script src="{% static 'js/jquery.superslides.min.js' %}"></script>
 <script src="{% static 'js/bootstrap-select.js' %}"></script>

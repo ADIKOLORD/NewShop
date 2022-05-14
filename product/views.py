@@ -71,6 +71,7 @@ def shopdetail(request, pk):
         'categories_show': Category.objects.all(),
         'product': Product.objects.get(pk=pk),
         'products': Product.objects.all()[:7],
+        "news": News.objects.all(),
 
     }
     if request.user.is_authenticated:

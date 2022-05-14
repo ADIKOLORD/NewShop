@@ -55,3 +55,17 @@ class Team(models.Model):
     class Meta:
         verbose_name = 'Работник'
         verbose_name_plural = 'Команда'
+
+
+class Contact(models.Model):
+    name = models.CharField(max_length=100)
+    email = models.EmailField()
+    subject = models.CharField(max_length=100)
+    message = models.TextField()
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = 'Контакт'
+        verbose_name_plural = 'Контакты'

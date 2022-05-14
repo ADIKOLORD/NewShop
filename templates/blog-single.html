@@ -1,0 +1,341 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<style>
+.navbar-nav{
+    width: 100%;
+}
+
+@media(min-width:568px){
+.end{
+        margin-left: auto;
+    }
+}
+
+@media(max-width:768px){
+#post{
+        width: 100%;
+    }
+}
+#clicked{
+    padding-top: 1px;
+    padding-bottom: 1px;
+    text-align: center;
+    width: 100%;
+    background-color: #ecb21f;
+    border-color: #a88734 #9c7e31 #846a29;
+    color: black;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 13px;
+}
+
+#profile{
+    background-color: unset;
+
+}
+
+#post{
+    margin: 10px;
+    padding: 6px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    text-align: center;
+    background-color: #ecb21f;
+    border-color: #a88734 #9c7e31 #846a29;
+    color: black;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 13px;
+    width: 50%;
+}
+
+#nav-items li a,#profile{
+    text-decoration: none;
+    color: rgb(224, 219, 219);
+    background-color: black;
+}
+
+
+.comments{
+    margin-top: 5%;
+    margin-left: 20px;
+}
+
+.darker{
+    border: 1px solid #ecb21f;
+    background-color: black;
+    float: right;
+    border-radius: 5px;
+    padding-left: 40px;
+    padding-right: 30px;
+    padding-top: 10px;
+}
+
+.comment{
+    border: 1px solid rgba(16, 46, 46, 1);
+    background-color: rgba(16, 46, 46, 0.973);
+    float: left;
+    border-radius: 5px;
+    padding-left: 40px;
+    padding-right: 30px;
+    padding-top: 10px;
+
+}
+.comment h4,.comment span,.darker h4,.darker span{
+    display: inline;
+}
+
+.comment p,.comment span,.darker p,.darker span{
+    color: rgb(184, 183, 183);
+}
+
+h1,h4{
+    color: white;
+    font-weight: bold;
+}
+label{
+    color: rgb(212, 208, 208);
+}
+
+#align-form{
+    margin-top: 20px;
+}
+.form-group p a{
+    color: white;
+}
+
+#checkbx{
+    background-color: black;
+}
+
+#darker img{
+    margin-right: 15px;
+    position: static;
+}
+
+.form-group input,.form-group textarea{
+    background-color: black;
+    border: 1px solid rgba(16, 46, 46, 1);
+    border-radius: 12px;
+}
+
+form{
+    border: 1px solid rgba(16, 46, 46, 1);
+    background-color: rgba(16, 46, 46, 0.973);
+    border-radius: 5px;
+    padding: 20px;
+ }
+
+    </style>
+<!-- Start All Title Box -->
+<div class="all-title-box">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h2>BLOG</h2>
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+                    <li class="breadcrumb-item active">BLOG DETAIL</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End All Title Box -->
+
+<!-- Start About Page  -->
+<div class="about-box-main">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="banner-frame">
+                    {% if one_blog.image %}
+                    <img class="img-thumbnail img-fluid" src="{{ one_blog.image.url }}"
+                         style="width:530px; height:530px;" alt=""/>
+                    {% else %}
+                    <img class="img-thumbnail img-fluid" src="{% static 'images/about-img.jpg' %}"
+                         alt=""/>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <h2 class="noo-sh-title">{{ one_blog.title }}</h2>
+                <hr>
+                <p style="font-weight:bold; color:black; font-size:1.3em;">{{ one_blog.text }}</p>
+            </div>
+        </div>
+        <div class="row my-5">
+            <div class="col-sm-6 col-lg-4">
+                <div class="service-block-inner">
+                    <h3>AUTHORS:</h3>
+                    <p style="font-weight:bold; color:black;">{{ one_blog.author }}</p>
+                </div>
+            </div>
+
+            <div class="col-sm-6 col-lg-4">
+                <div class="service-block-inner">
+                    <h3>TAGS:</h3>
+                    <p style="font-weight:bold; color:black;">#LIFE</p>
+                    <p style="font-weight:bold; color:black;">#COFFEE</p>
+                    <p style="font-weight:bold; color:black;">#PROGRAMMER</p>
+                </div>
+            </div>
+
+            <div class="col-sm-6 col-lg-4">
+                <div class="service-block-inner">
+                    <h3>AUTHOR IN NETWORK</h3>
+                    <a style="margin:10px;" href="#"><i class="fab fa-facebook"
+                                                        aria-hidden="true"></i></a>
+                    <a style="margin:10px;" href="#"><i class="fab fa-twitter"
+                                                        aria-hidden="true"></i></a>
+                    <a style="margin:10px;" href="#"><i class="fab fa-linkedin"
+                                                        aria-hidden="true"></i></a>
+                    <a style="margin:10px;" href="#"><i class="fab fa-google-plus"
+                                                        aria-hidden="true"></i></a>
+                    <a style="margin:10px;" href="#"><i class="fa fa-rss"
+                                                        aria-hidden="true"></i></a>
+                    <a style="margin:10px;" href="#"><i class="fab fa-pinterest-p"
+                                                        aria-hidden="true"></i></a>
+                    <a style="margin:10px;" href="http://Wa.me/+996779276265">
+                        <i class="fab fa-whatsapp" aria-hidden="true"></i>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+        <!-- Main Body -->
+        <section>
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-5 col-md-6 col-12 pb-4">
+                        <h1 style="color:black;">Comments(4)</h1>
+                        <div class="comment mt-4 text-justify">
+                            <img src="https://i.imgur.com/yTFUilP.jpg" alt="" class="rounded-circle"
+                                 width="40" height="40">
+                            <h4>Jhon Doe</h4>
+                            <span>- 20 October, 2018</span>
+                            <br>
+                            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusamus
+                                numquam assumenda hic aliquam vero sequi velit molestias doloremque
+                                molestiae dicta?</p>
+                        </div>
+                        <div class="darker mt-4 text-justify">
+                            <img src="https://i.imgur.com/CFpa3nK.jpg" alt="" class="rounded-circle"
+                                 width="40" height="40">
+                            <h4>Rob Simpson</h4>
+                            <span>- 20 October, 2018</span>
+                            <br>
+                            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusamus
+                                numquam assumenda hic aliquam vero sequi velit molestias doloremque
+                                molestiae dicta?</p>
+                        </div>
+                        <div class="comment mt-4 text-justify">
+                            <img src="https://i.imgur.com/yTFUilP.jpg" alt="" class="rounded-circle"
+                                 width="40" height="40">
+                            <h4>Jhon Doe</h4>
+                            <span>- 20 October, 2018</span>
+                            <br>
+                            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusamus
+                                numquam assumenda hic aliquam vero sequi velit molestias doloremque
+                                molestiae dicta?</p>
+                        </div>
+                        <div class="darker mt-4 text-justify">
+                            <img src="https://i.imgur.com/CFpa3nK.jpg" alt="" class="rounded-circle"
+                                 width="40" height="40">
+                            <h4>Rob Simpson</h4>
+                            <span>- 20 October, 2018</span>
+                            <br>
+                            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusamus
+                                numquam assumenda hic aliquam vero sequi velit molestias doloremque
+                                molestiae dicta?</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-4 offset-md-1 offset-sm-1 col-12 mt-4">
+                        <div class="contact-form-right" style="width:140%;">
+                            <h2 style="margin-bottom:20px;">LEAVE COMMENT</h2>
+                            <form method="post">
+                                {% csrf_token %}
+
+                                <div class="row" id="contactForm">
+                                    {% for form in forms %}
+                                    <div class="col-md-12">
+                                        <div class="form-group" >
+                                            {{ form }}
+                                            <div class="help-block with-errors"></div>
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+
+                                    <div class="col-md-12">
+                                        <div class="submit-button text-center">
+                                            <button class="btn hvr-hover" id="submit" type="submit">
+                                                Send Message
+                                            </button>
+                                            <div id="msgSubmit" class="h3 text-center hidden"></div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </form>
+
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+</div>
+<!-- End About Page -->
+
+{% endblock %}
+<div class="row">
+
+
+    <div class="col-lg-6 col-sm-12">
+        <div class="contact-form-right">
+            <h2 style="margin-bottom:20px;">LEAVE COMMENT</h2>
+            <form method="post">
+                {% csrf_token %}
+
+                <div class="row" id="contactForm">
+                    {% for form in forms %}
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            {{ form }}
+                            <div class="help-block with-errors"></div>
+                        </div>
+                    </div>
+                    {% endfor %}
+
+                    <div class="col-md-12">
+                        <div class="submit-button text-center">
+                            <button class="btn hvr-hover" id="submit" type="submit">
+                                Send Message
+                            </button>
+                            <div id="msgSubmit" class="h3 text-center hidden"></div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+
+                </div>
+            </form>
+
+
+        </div>
+
+    </div>
+    <div class="col-lg-6 col-sm-12">
+        <div class="contact-form-right">
+            <h2 style="margin-bottom:20px;">Comments (4)</h2>
+
+
+        </div>
+
+    </div>
+
+</div>

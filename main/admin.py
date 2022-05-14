@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.db.models import QuerySet
 
-from main.models import News, Banner, Team
+from main.models import News, Banner, Team, Contact
 
 
 class NewsAdmin(admin.ModelAdmin):
@@ -75,3 +75,12 @@ class TeamAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Team, TeamAdmin)
+
+
+class ContactAdmin(admin.ModelAdmin):
+
+    list_display = ['name', 'subject']
+
+    list_per_page = 10
+
+admin.site.register(Contact, ContactAdmin)

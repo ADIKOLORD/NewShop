@@ -1,6 +1,8 @@
+from django.shortcuts import redirect
 from django.views.generic import ListView
 
 from blog.models import Blog
+from main.forms import ContactForm
 from main.models import Banner, News, Team
 from product.models import Product, Category
 from product.views import shopfind
@@ -47,7 +49,7 @@ class Main(ListView):
             'products': Product.objects.all()[:4],
             'banners': Banner.objects.all(),
             "news": News.objects.all(),
-            'categories': Category.objects.all()[:6],
+            'categories': Category.objects.all()[::-1],
             'blogs': Blog.objects.all().filter(is_published=True)[:3],
             'categories_show': Category.objects.all(),
 
@@ -98,6 +100,7 @@ class About(ListView):
             'about': 'active',
             'title': 'About',
             'categories_show': Category.objects.all(),
+            "news": News.objects.all(),
 
         })
         if self.request.user.is_authenticated:
@@ -141,6 +144,7 @@ class Service(ListView):
             'service': 'active',
             'categories_show': Category.objects.all(),
             'teams': Team.objects.all(),
+            "news": News.objects.all(),
         })
         if self.request.user.is_authenticated:
             user = MyUser.objects.get(name=self.request.user.username)
@@ -181,6 +185,8 @@ class Contact(ListView):
             'title': 'Contact',
             'contact': 'active',
             'categories_show': Category.objects.all(),
+            "news": News.objects.all(),
+            'forms': ContactForm()
         })
         if self.request.user.is_authenticated:
             user = MyUser.objects.get(name=self.request.user.username)
@@ -192,4 +198,8 @@ class Contact(ListView):
         return context
 
     def post(self, request):
-        return shopfind(request, request.POST['mainsearch'])
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            form.save()
+
+        return redirect('home')

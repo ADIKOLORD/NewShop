@@ -6,6 +6,7 @@ from django.shortcuts import render, redirect
 from product.models import Product, Category
 
 # User App
+from product.views import shopfind
 from user.forms import UserRegisterForm, UserLoginForm
 from user.models import MyUser
 
@@ -65,6 +66,8 @@ def wishlist_del(request, pk):
 
 
 def cart(request):
+    if request.method == 'POST' and len(request.POST) == 2:
+        return shopfind(request, request.POST['mainsearch'])
     context = {
         'title': 'Cart',
         'categories_show': Category.objects.all(),
@@ -82,6 +85,8 @@ def cart(request):
             'sum_pro': sum([i.price for i in user.cart.all()]) - 52,
 
         })
+
+
     return render(request, 'cart.html', context)
 
 
@@ -223,6 +228,9 @@ def logout_user(request):
 
 
 def checkout(request):
+    if request.method == 'POST':
+        for i in request.POST:
+            print(i, ':', request.POST[i])
     context = {
         'title': 'Checkout',
         'categories_show': Category.objects.all(),

@@ -43,7 +43,7 @@ class UserLoginForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ('username',)
+        fields = ('username', 'password')
         widgets = {
             'username': forms.TextInput(attrs={'class': 'form-control'}),
         }

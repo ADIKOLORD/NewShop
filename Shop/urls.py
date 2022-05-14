@@ -17,6 +17,8 @@ from django.contrib import admin
 from django.urls import path
 
 from django.conf.urls.static import static
+
+from blog.views import blog, blogdetail
 from . import settings
 from main.views import About, Main, Service, Contact
 from user.views import cart, \
@@ -42,5 +44,7 @@ urlpatterns = [
                   path('register/', register, name='register'),
                   path('login/', auth, name='login'),
                   path('logout/', logout_user, name='logout'),
+                  path('blog', blog, name='blog'),
+                  path('blog/<int:pk>', blogdetail, name='blogdetail'),
 
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
