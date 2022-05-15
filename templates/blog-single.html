@@ -209,47 +209,29 @@ form{
             <div class="container">
                 <div class="row">
                     <div class="col-sm-5 col-md-6 col-12 pb-4">
-                        <h1 style="color:black;">Comments(4)</h1>
-                        <div class="comment mt-4 text-justify">
-                            <img src="https://i.imgur.com/yTFUilP.jpg" alt="" class="rounded-circle"
+                        <h1 style="color:black;">Comments({{ comments|length }})</h1>
+                        {% for comment in comments reversed %}
+                        {% if comment.id|divisibleby:"2"%}
+                        <div class="darker mt-4 text-justify" style="width:100%;">
+                            <img src="{% static 'images/com1.jpg' %}" alt="" class="rounded-circle"
                                  width="40" height="40">
-                            <h4>Jhon Doe</h4>
-                            <span>- 20 October, 2018</span>
+                            <h4>{{ comment.name }}</h4>
+                            <span>- {{ comment.pub_date|date:"j F, o"}}</span>
                             <br>
-                            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusamus
-                                numquam assumenda hic aliquam vero sequi velit molestias doloremque
-                                molestiae dicta?</p>
+                            <p>{{ comment.comment }}</p>
                         </div>
-                        <div class="darker mt-4 text-justify">
-                            <img src="https://i.imgur.com/CFpa3nK.jpg" alt="" class="rounded-circle"
+
+                        {% else %}
+                        <div class="comment mt-4 text-justify" style="width:100%;">
+                            <img src="{% static 'images/com2.jpg' %}" alt="" class="rounded-circle"
                                  width="40" height="40">
-                            <h4>Rob Simpson</h4>
-                            <span>- 20 October, 2018</span>
+                            <h4>{{ comment.name }}</h4>
+                            <span>- {{ comment.pub_date|date:"j F, o"}}</span>
                             <br>
-                            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusamus
-                                numquam assumenda hic aliquam vero sequi velit molestias doloremque
-                                molestiae dicta?</p>
+                            <p>{{ comment.comment }}</p>
                         </div>
-                        <div class="comment mt-4 text-justify">
-                            <img src="https://i.imgur.com/yTFUilP.jpg" alt="" class="rounded-circle"
-                                 width="40" height="40">
-                            <h4>Jhon Doe</h4>
-                            <span>- 20 October, 2018</span>
-                            <br>
-                            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusamus
-                                numquam assumenda hic aliquam vero sequi velit molestias doloremque
-                                molestiae dicta?</p>
-                        </div>
-                        <div class="darker mt-4 text-justify">
-                            <img src="https://i.imgur.com/CFpa3nK.jpg" alt="" class="rounded-circle"
-                                 width="40" height="40">
-                            <h4>Rob Simpson</h4>
-                            <span>- 20 October, 2018</span>
-                            <br>
-                            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusamus
-                                numquam assumenda hic aliquam vero sequi velit molestias doloremque
-                                molestiae dicta?</p>
-                        </div>
+                        {% endif %}
+                        {% endfor %}
                     </div>
                     <div class="col-lg-4 col-md-6 col-sm-4 offset-md-1 offset-sm-1 col-12 mt-4">
                         <div class="contact-form-right" style="width:140%;">
@@ -293,49 +275,3 @@ form{
 <!-- End About Page -->
 
 {% endblock %}
-<div class="row">
-
-
-    <div class="col-lg-6 col-sm-12">
-        <div class="contact-form-right">
-            <h2 style="margin-bottom:20px;">LEAVE COMMENT</h2>
-            <form method="post">
-                {% csrf_token %}
-
-                <div class="row" id="contactForm">
-                    {% for form in forms %}
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            {{ form }}
-                            <div class="help-block with-errors"></div>
-                        </div>
-                    </div>
-                    {% endfor %}
-
-                    <div class="col-md-12">
-                        <div class="submit-button text-center">
-                            <button class="btn hvr-hover" id="submit" type="submit">
-                                Send Message
-                            </button>
-                            <div id="msgSubmit" class="h3 text-center hidden"></div>
-                            <div class="clearfix"></div>
-                        </div>
-                    </div>
-
-                </div>
-            </form>
-
-
-        </div>
-
-    </div>
-    <div class="col-lg-6 col-sm-12">
-        <div class="contact-form-right">
-            <h2 style="margin-bottom:20px;">Comments (4)</h2>
-
-
-        </div>
-
-    </div>
-
-</div>

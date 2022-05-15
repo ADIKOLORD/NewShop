@@ -49,7 +49,6 @@ class BlogAdmin(admin.ModelAdmin):
                'set_category_electric',
                'set_clone_model',
                ]
-
     # Добавление дествии
     @admin.action(description='Установить категорию Sport')
     def set_category_sport(self, request, qs: QuerySet):
@@ -57,19 +56,15 @@ class BlogAdmin(admin.ModelAdmin):
         # self.message_user -> Функция болгондо кандай сообщение чыгарына жооп берет.
         self.message_user(request,
                           f'Было обновлено {count_updates} записей', )
-
     @admin.action(description='Установить категорию Man')
     def set_category_man(self, request, qs: QuerySet):
         qs.update(category=1)
-
     @admin.action(description='Установить категорию Woman')
     def set_category_woman(self, request, qs: QuerySet):
         qs.update(category=2)
-
     @admin.action(description='Установить категорию Electric')
     def set_category_electric(self, request, qs: QuerySet):
         qs.update(category=4)
-
     @admin.action(description='Копировать как новый модель')
     def set_clone_model(self, request, qs: QuerySet):
         for object in qs:
@@ -91,13 +86,13 @@ class CommentAdmin(admin.ModelAdmin):
     readonly_fields = []  # watch
 
     # list_display -> Отображение на панеле
-    list_display = ('name', 'product', )
+    list_display = ('name', 'blog',)
 
     # list_display_links -> Переобразовать в ссылку
-    list_display_links = ('name', 'product', )
+    list_display_links = ('name', 'blog',)
 
     # search_fields -> Поиск болгондо кайсылардан издеш керек!
-    search_fields = ('name', 'comment', 'product', )
+    search_fields = ('name', 'comment', 'blog',)
 
     # list_editable -> Панелде сразу редактирование кылса болот
     # list_editable = ('price',)
@@ -123,7 +118,6 @@ class CommentAdmin(admin.ModelAdmin):
                'set_category_electric',
                'set_clone_model',
                ]
-
     # Добавление дествии
     @admin.action(description='Установить категорию Sport')
     def set_category_sport(self, request, qs: QuerySet):
@@ -131,19 +125,15 @@ class CommentAdmin(admin.ModelAdmin):
         # self.message_user -> Функция болгондо кандай сообщение чыгарына жооп берет.
         self.message_user(request,
                           f'Было обновлено {count_updates} записей', )
-
     @admin.action(description='Установить категорию Man')
     def set_category_man(self, request, qs: QuerySet):
         qs.update(category=1)
-
     @admin.action(description='Установить категорию Woman')
     def set_category_woman(self, request, qs: QuerySet):
         qs.update(category=2)
-
     @admin.action(description='Установить категорию Electric')
     def set_category_electric(self, request, qs: QuerySet):
         qs.update(category=4)
-
     @admin.action(description='Копировать как новый модель')
     def set_clone_model(self, request, qs: QuerySet):
         for object in qs:

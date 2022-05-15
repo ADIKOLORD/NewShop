@@ -1,13 +1,5 @@
 from django.db import models
 
-from product.models import Product
-
-'''
-Blog
-Comment
-
-'''
-
 
 class Blog(models.Model):
     author = models.CharField(max_length=100)
@@ -32,7 +24,7 @@ class Comment(models.Model):
     email = models.EmailField()
     comment = models.TextField()
     pub_date = models.DateTimeField(auto_now=True)
-    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    blog = models.ForeignKey(Blog, on_delete=models.CASCADE, default=1)
 
     def __str__(self):
         return self.name
@@ -40,6 +32,3 @@ class Comment(models.Model):
     class Meta:
         verbose_name = 'Комментарий'
         verbose_name_plural = 'Комментарии'
-
-
-

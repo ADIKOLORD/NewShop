@@ -1,10 +1,11 @@
 from django.shortcuts import render, redirect
 
 from blog.forms import CommentForm
-from blog.models import Blog
+from blog.models import Blog, Comment
 from main.models import News
 from product.models import Category, Product
 from user.models import MyUser
+
 
 def watch_blog(id):
     blog = Blog.objects.get(pk=id)
@@ -35,9 +36,9 @@ def blogdetail(request, pk):
         form = CommentForm(request.POST)
         if form.is_valid():
             comment = form.save()
-            comment.product = Product.objects.get(pk=pk)
+            comment.blog = Blog.objects.get(pk=pk)
             comment.save()
-            return redirect(f'blogdetail/{pk}')
+            return redirect('blogdetail', pk)
 
     context = {
         'title': 'BlogSingle',
@@ -45,7 +46,8 @@ def blogdetail(request, pk):
         'categories_show': Category.objects.all(),
         'news': News.objects.all(),
         'one_blog': Blog.objects.get(pk=pk),
-        'forms': CommentForm()
+        'forms': CommentForm(),
+        'comments': Comment.objects.all().filter(blog_id=pk),
     }
     if request.user.is_authenticated:
         user = MyUser.objects.get(name=request.user.username)
@@ -54,6 +56,5 @@ def blogdetail(request, pk):
             'cart_products': user.cart.all(),
             'sum_cart': sum([i.price for i in user.cart.all()]),
         })
+
     return render(request, 'blog-single.html', context)
-
-
